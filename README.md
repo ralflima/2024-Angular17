@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/ralflima/2024-Angular17/blob/main/logo.svg" width="30%">
+  <img src="https://github.com/ralflima/2024-Angular17/blob/main/logo.png" width="30%">
   <h1 style="border-bottom:none">Angular 17</h1>
   <p>Instrutor: Ralf Schweder de Lima</p>
   
