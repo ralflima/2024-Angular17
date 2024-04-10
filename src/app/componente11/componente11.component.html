@@ -1,0 +1,64 @@
+<!-- FORMULÁRIO -->
+<form [formGroup]="formulario">
+    
+    <!-- VALIDAÇÕES -->
+    @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
+        <p class="alert alert-warning">O campo nome precisa ser preenchido.</p>
+    }
+
+    @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched) {
+        <p class="alert alert-warning">O campo nome precisa ter pelo menos três caracteres.</p>
+    }
+    
+    @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">O campo idade precisa ser preenchido.</p>
+    }
+    
+    @if (formulario.get('idade').hasError('min') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">A idade mínima é 0.</p>
+    }
+    
+    @if (formulario.get('idade').hasError('max') && formulario.get('idade').touched) {
+        <p class="alert alert-warning">A idade máxima é 120.</p>
+    }
+
+    @if (formulario.get('cidade').hasError('required') && formulario.get('cidade').touched) {
+        <p class="alert alert-warning">O campo cidade precisa ser preenchido.</p>
+    }
+
+    @if (formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched) {
+        <p class="alert alert-warning">O campo cidade precisa ter pelo menos três caracteres.</p>
+    }
+
+    <!-- INPUTS -->
+    <input type="text"   name="nome"       placeholder="Nome"    formControlName="nome"   class="form-control">
+    <input type="number" name="idade"      placeholder="Idade"   formControlName="idade"  class="form-control">
+    <input type="text"   name="cidade"     placeholder="Cidade"  formControlName="cidade" class="form-control">
+    <input type="button" value="Cadastrar" *ngIf="btnCadastrar"  (click)="cadastrar()" class="btn btn-primary" [disabled]="formulario.get('nome').hasError('required') || formulario.get('nome').hasError('minlength') || formulario.get('idade').hasError('required') || formulario.get('nome').hasError('min') || formulario.get('nome').hasError('max') || formulario.get('cidade').hasError('required') || formulario.get('cidade').hasError('minlength')">
+    <input type="button" value="Alterar"   *ngIf="!btnCadastrar" (click)="alterar()"   class="btn btn-primary" [disabled]="formulario.get('nome').hasError('required') || formulario.get('nome').hasError('minlength') || formulario.get('idade').hasError('required') || formulario.get('nome').hasError('min') || formulario.get('nome').hasError('max') || formulario.get('cidade').hasError('required') || formulario.get('cidade').hasError('minlength')">
+    <input type="button" value="Remover"   *ngIf="!btnCadastrar" (click)="remover()"   class="btn btn-primary">
+    <input type="button" value="Cancelar"  *ngIf="!btnCadastrar" (click)="cancelar()"  class="btn btn-primary">
+</form>
+
+<!-- TABELA -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let v of vetor; let indice = index">
+            <td>{{indice+1}}</td>
+            <td>{{v.nome}}</td>
+            <td>{{v.idade}}</td>
+            <td>{{v.cidade}}</td>
+            <td><button class="btn btn-primary" (click)="selecionar(indice)">Selecionar</button></td>
+        </tr>
+    </tbody>
+</table>
